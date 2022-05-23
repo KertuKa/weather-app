@@ -1,17 +1,20 @@
 import React, { Component, useState } from 'react'
 
 export default function Icons(props) {
-const {weather} = props;
+const {weather, icon} = props;
 
-    return (
-          <i className={weather.list[0].weather[0].id <= 232 ? "wi wi-thunderstorm" 
-          : weather.list[0].weather[0].id >= 300 && weather.list[0].weather[0].id <=321 ? "wi wi-sprinkle"
-          : weather.list[0].weather[0].id >= 500 && weather.list[0].weather[0].id <=521 ? "wi wi-rain"
-          : weather.list[0].weather[0].id >= 600 && weather.list[0].weather[0].id <=622 ? "wi wi-snow"
-          : weather.list[0].weather[0].id >= 701 && weather.list[0].weather[0].id <=781 ? "wi wi-fog"
-          : weather.list[0].weather[0].id === 800 ? "wi wi-day-sunny"
-          : weather.list[0].weather[0].id >= 801 && weather.list[0].weather[0].id <=804 ? "wi wi-cloudy"
-          : "wi wi-cloud"}/>                     
+    return (     
+      <div classNames="week-icon-items">      
+      <i className={icon <= 232 ? "week-icons wi wi-thunderstorm" 
+            : icon >= 300 && icon <=321 ? "week-icons wi wi-sprinkle"
+            : icon >= 500 && icon <=531 ? "week-icons wi wi-rain"
+            : icon >= 600 && icon <=622 ? "week-icons wi wi-snow"
+            : icon >= 701 && icon <=781 ? "week-icons wi wi-fog"
+            : icon === 800 ? "week-icons wi wi-day-sunny"
+            : icon >= 801 && icon <=804 ? "week-icons wi wi-cloudy"
+            : "wi wi-cloud"}/>    
+      </div>      
+              
     )
         
   }

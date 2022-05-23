@@ -1,19 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,90&display=swap);
 @import url(weather-icons/css/weather-icons.css);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #6e818a;
-  font-weight: lighter;
+  font-weight: 400;
 }
 body {
-  font-family: Roboto,
-  monospace, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fe8669;
+  
 }
 
 .container {
@@ -26,50 +26,120 @@ body {
 
 .weather-box {
   width: 100%;
-  height: 550px;
+  height: 590px;
   max-width: 1000px;
   background-color: #FFF;
   overflow: hidden;
   box-shadow: 1px 1px 5px 1px;
 }
 
-.city-name {
-  font-weight: bold;
-  font-size: 47px;
+/* First page */
+
+.searchfield-container {
+  width: 500px;
+  height: 150px;
+  padding: auto;
+  margin: auto;
+  margin-top: 220px;
 }
 
-.current-date {
-  font-weight: lighter;
+.search-field {
+  display: flex;
 }
 
-.description {
-  font-weight: lighter;
+.material-icons {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  position:absolute;
+  border-bottom: 2px solid #6e818a;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.description:first-letter{
-  text-transform:capitalize;
+.search-button {
+  color: #6e818a;
+  border-bottom: 2px solid #6e818a;
+  height: 50px;
+  
+}
+
+.arrow-container{
+  width: 30px;
+  height: 30px;
+  padding-top: 58px;
+}
+
+.arrow {
+  font-size: 38px;
+  border: none;
+  color: #6e818a;
+}
+
+::placeholder {
+  color: hsl(0deg 0% 66%);
+  font-weight: 500;
+  padding-left: 30px; 
+}
+
+.text-field {
+  width: 470px;
+  height: 50px;
+  border: none;
+  border-bottom: 2px solid #6e818a;
+  font-size: 42px;
+  text-align: center;
+}
+
+.current-position {
+  border: none;
+  background-color: white;
+  font-size: 21px;
+  border-bottom: 2px dotted;
+}
+
+.use-location{
+  text-align: center;
+  line-height: 65px;
+}
+
+.use-location-text {
+  font-size: 21px;
+  line-height: 0px;
 }
 
 
-.temp {
-  font-size: 6rem;
-  color: #e49683;
-  font-weight: normal;
-}
+
+/* Header */
+
 
 .weather-box-header{
   width: 100%;
   display: flex;
   justify-content: space-between;
   height: 25%;
-  padding: 0;
   left: 0;
   bottom: 0;
   align-self: flex-end;
   min-width: 30%;
+  padding-top: 0px;
+  padding-left: 48px;
 }
 
 
+.city-name {
+  font-weight: 500;
+  font-size: 45px;
+  padding-top: 46.95px;
+  margin-right: 410px;
+  color: #6e818a;
+
+}
+
+/* Main */
 .weather-box-main {
   width: 100%;
   display: flex;
@@ -80,64 +150,250 @@ body {
   bottom: 0;
   align-self: flex-end;
   min-width: 30%;
+  padding: 0px 48px;
 }
 
-.weather-box-footer {
+.current-date {
+  font-weight: 300;
+  font-size: 45px;
+  padding-bottom: 15px;
+  color: #6e818a;
+}
+
+.description {
+  font-weight: 300;
+  font-size: 34px;
+  padding-bottom: 0px;
+  color: #6e818a;
+}
+
+.description:first-letter{
+  text-transform:capitalize;
+}
+
+.current-weather-container {
+  display:flex;
+}
+
+.temp {
+  font-size: 8rem;
+  color: #e49683;
+  font-weight: normal;
+  padding-right: 50px;
+}
+
+.current-weather-icon {
+  font-size: 8em;
+  color: #e49683;
+}
+
+.daily-temp{
+  font-size: 20px;
+  font-weight: lighter;
+  padding-left: 50px;
+  line-height: 1.6;
+  color: #e49683;
+}
+
+.weather-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   height: 25%;
-  padding: 0px 48px;
-  left: 0;
-  bottom: 0;
-  align-self: flex-end;
   min-width: 30%;
   font-size: 20px;
+  align-items: center;
 }
 
-.toggle {
-  position: relative;
+
+/* Footer */
+.weather-box-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 48px;
+  padding-left: 48px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weather-box-footer-item {
+  font-size: 40px;
+  line-height: 1.5;
+  color: #6e818a;
+  text-align: center;
+}
+
+.week-temp {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.week-day-name {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+/* React toggle */
+
+.toggle-container {
+  padding-top: 58px;
+  padding-right: 48px;
+}
+
+.react-toggle {
+  touch-action: pan-x;
+ 
   display: inline-block;
-  width: 60px;
-  height: 34px;
-  top: 20%;
-  right: 3%;
-}
-
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
+  position: relative;
   cursor: pointer;
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  border-radius: 20px;
-  border: 1px solid;
-  width: 47px;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-tap-highlight-color: white;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.slider:before {
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
   position: absolute;
-  content: "";
-  height: 13px;
-  width: 13px;
-  left: 2px;
-  bottom: 4px;
+  width: 1px;
+}
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+
+.react-toggle-track {
+  width: 85px;
+  height: 30px;
+  padding: 0px;
+  border-radius: 30px;
   background-color: white;
-  transition: 0.3s;
-  border-radius: 20px;
-  border: 1px solid;
-  top: 0;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  border: 1.3px solid #6e818a;
 }
 
-input:checked + .slider:before {
-  transform: translateX(26px);
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: white;
+  border: 1.5px solid #6e818a;
 }
 
+.react-toggle--checked .react-toggle-track {
+  background-color: white;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: white;
+}
+
+.react-toggle-track-check {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  top: 3px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  left: 15px;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-check {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle-track-x {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  top: 3px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  right: 25px;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-x {
+  opacity: 0;
+}
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: 1.5px;
+  left: 1.5px;
+  width: 32px;
+  height: 27px;
+  border: 1.3px solid #4D4D4D;
+  border-radius: 45%;
+  background-color: white;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 51.5px;
+
+}
+
+@media screen and (max-width: 600px) {
+  .weather-box {
+    height: -100%;
+    width: 80%;
+  }
+
+  .searchfield-container {
+    width: 50%;
+    margin-top: 70%;
+  }
+
+  .current-position {
+    border: none;
+    background-color: white;
+    font-size: 21px;
+    border-bottom: 2px dotted;
+    line-height: 70px;
+  }
+}
