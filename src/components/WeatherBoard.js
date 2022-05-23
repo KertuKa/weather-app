@@ -14,6 +14,10 @@ function WeatherBoard() {
     const [query, setQuery] = useState("");
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
+    const [status, setStatus] = useState(null);
+    const [cityName, setCityName] = useState('');
+
+    
 
 
 /*   useEffect(() => {
@@ -23,20 +27,24 @@ function WeatherBoard() {
  },[query]);  */
 
  useEffect(() => {
-    //getUserLocation();
-    search();
+    getUserLocation();
+   //search();
  },[]);
 
 
  const getUserLocation = () => {
+
     navigator.geolocation.getCurrentPosition((position) => {
     setLongitude(position.coords.longitude);
     setLatitude(position.coords.latitude);
+        console.log(position);
       console.log(latitude);
     }) 
       axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=3c9121331dd39b253026c6fdc1f91974`)
       .then((response) => {
           setWeather(response.data);
+         // console.log(response.data.timezone);
+         // setCityName(response.data.timezone);
       })
   }; 
  
@@ -57,8 +65,13 @@ function WeatherBoard() {
       })
     };
 
-    
+    const handleReset = (e) => {
+        setWeather(() => '');
+      //  setQuery(() => '');
+    }
 
+
+/* 
     const getWeather = async () => {
    
     const api = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=59.4372155&lon=24.7453688&appid=3c9121331dd39b253026c6fdc1f91974`);
@@ -71,7 +84,7 @@ function WeatherBoard() {
     setWeather(await api.json())
     console.log(weather);
     
-    }; 
+    };  */
 
 
 
@@ -80,9 +93,11 @@ function WeatherBoard() {
     <div className="weather-box">
         <div className="weather-box-header">
             <div className="arrow-container">
-                <button type="arrow-back" className="material-icons arrow">arrow_back</button>
+                <button type="arrow-back" className="material-icons arrow" onClick={handleReset}>arrow_back</button>
             </div>
-                <h1 className="city-name">{weather.timezone}</h1>  
+                <h1 className="city-name">
+                {weather.timezone.split("/").pop()}
+                </h1>  
             <span className="toggle-container">
             <label>
         <Toggle
