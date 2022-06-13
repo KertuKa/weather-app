@@ -1,0 +1,29 @@
+$orangeColor: rgb(254, 134, 105);
+$greyColor: rgb(110, 129, 137);
+$whiteColor: rgb(255, 255, 255);
+$lightGrey: rgb(168, 168, 168);
+$lightOrange: rgb(227, 149, 130);
+
+$fontLight: 300;
+$fontNormal: 400;
+$fontMedium: 500;
+
+$fontSizeXXS: 13px;
+$fontSizeXS: 14px;
+$fontSizeS: 21px;
+$fontSizeM: 34px;
+$fontSizeL: 44px;
+$fontSizeXL: 83px;
+$fontSizeXXL: 120px;
+
+@mixin day-temp {
+    font-size: 20px;
+    font-weight: lighter;
+    padding-left: 55px;
+    line-height: 1.8;
+    color: $lightOrange;
+    display: block;
+}
+
+
+   

@@ -1,7 +1,6 @@
 import React, { Component, useState } from 'react'
 
-export default function Icons(props) {
-const {weather, icon} = props;
+export default function Icons({icon}) {
 
     return (     
       <div classNames="week-icon-items">      
