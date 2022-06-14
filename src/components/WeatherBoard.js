@@ -1,49 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import moment from "moment";
 import Search from './Search';
 import Weather from './Weather';
 
 
+const storageWeatherDegree = JSON.parse(localStorage.getItem('weather-degree'));
+const storageNoWeatherDegree = JSON.parse(localStorage.getItem('no-weather-degree'));
 
 function WeatherBoard() {
-    const [weather, setWeather] = useState([]);
+   
     const [location, setLocation] = useState({latitude:null, longitude:null});
-    const [forecast, setForecast] = useState(false);
+    const [ setForecast] = useState(false);
     const [degree, setDegree] = useState(false);
- 
-    
+    const [weatherDegree, setWeatherDegree] = useState({});
+    const [noWeatherDegree, setNoWeatherDegree] = useState({});
 
-    const changeDegree = (e) => {
-      setDegree(e.target.checked);
-    }
 
+    console.log(weatherDegree,storageNoWeatherDegree, noWeatherDegree, '<===śtorages');
+
+
+    const changeDegree = () => {
+        setDegree(!degree);
+        localStorage.setItem('weather-degree', JSON.stringify(storageNoWeatherDegree));
+        localStorage.setItem('no-weather-degree', JSON.stringify(storageWeatherDegree));
+      
+    };
         
     useEffect(() => {
-      getUserLocation();
-      },[]);
+        getUserLocation();
+    },[]);
 
     const getUserLocation = () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-      setLocation({longitude: position.coords.longitude, latitude: position.coords.latitude});
-        })
+        navigator.geolocation.getCurrentPosition((position) => {
+            setLocation({longitude: position.coords.longitude, latitude: position.coords.latitude});
+        });
     }; 
 
-  return (   
-        forecast ? 
-        <Weather
-            weather={weather}
-            setForecast={setForecast}
-            changeDegree={changeDegree}
-            degree={degree}
+
+
+ 
+
+    return (   
+        Object.keys(storageWeatherDegree).length > 0 || Object.keys(weatherDegree).length > 0   ? 
+            <Weather
+                weatherDegree={storageWeatherDegree || weatherDegree}
+                setForecast={setForecast}
+                changeDegree={changeDegree}
+                noWeatherDegree={storageNoWeatherDegree || noWeatherDegree}
+                degree={degree}
+                setNoWeatherDegree={setNoWeatherDegree}
+                setWeatherDegree={setWeatherDegree}
+               
             /> 
-        : 
-        <Search
-            setWeather={setWeather}
-            setForecast ={setForecast}
-            currentLocation = {location}
-            degree={degree}
+            : 
+            <Search
+                setWeatherDegree={setWeatherDegree}
+                setNoWeatherDegree={setNoWeatherDegree}
+                setForecast ={setForecast}
+                currentLocation = {location}
+                degree={degree}
+                changeDegree={changeDegree}
+                getUserLocation={getUserLocation}
             />  
-  )
+    );
 }
 
 
