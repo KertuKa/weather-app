@@ -3,6 +3,7 @@ import {React} from 'react';
 import Toggle from 'react-toggle';
 
 export default function Header({weather, handleReset, changeDegree, degree}) {
+
     return weather && weather.current && weather.current ? (
         <header className="weather-box-header">
             <div className="city-container">
@@ -25,7 +26,7 @@ export default function Header({weather, handleReset, changeDegree, degree}) {
                             unchecked: '°F',
                         }} 
                         onChange={changeDegree}
-                        checked={degree===true}
+                        checked={degree===true }
                         unchecked={degree===false}
                     />
                 </label>

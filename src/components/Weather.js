@@ -9,15 +9,16 @@ export default function Weather({ setNoWeatherDegree, setWeatherDegree, setForec
 
     const handleReset = () => {
         setForecast(false);
-        localStorage.clear();
+        localStorage.setItem('forecast', false);
+        localStorage.removeItem('weather-degree');
+        localStorage.removeItem('no-weather-degree');
         setWeatherDegree({});
         setNoWeatherDegree({});
     };
+ 
 
-
-
-    return weatherDegree && weatherDegree.current  ? (
-        <div className="weather-box"> 
+    return weatherDegree ? (
+        <div className='weather-box'> 
             <Header
                 weather={degree ? weatherDegree : noWeatherDegree}
                 handleReset={handleReset}
@@ -32,7 +33,7 @@ export default function Weather({ setNoWeatherDegree, setWeatherDegree, setForec
             />  
         </div>
     ) : (
-        <div className="snippet" data-title=".dot-flashing">
-            <div className="dot-flashing"></div>
+        <div className='snippet' data-title='.dot-flashing'>
+            <div className='dot-flashing'></div>
         </div>);
 }

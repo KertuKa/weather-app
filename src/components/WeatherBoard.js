@@ -7,40 +7,39 @@ const storageWeatherDegree = JSON.parse(localStorage.getItem('weather-degree'));
 const storageNoWeatherDegree = JSON.parse(localStorage.getItem('no-weather-degree'));
 
 function WeatherBoard() {
-   
-    const [location, setLocation] = useState({latitude:null, longitude:null});
-    const [ setForecast] = useState(false);
+
+    const [location, setLocation] = useState({ latitude: null, longitude: null });
+    const [forecast, setForecast] = useState(false);
     const [degree, setDegree] = useState(false);
     const [weatherDegree, setWeatherDegree] = useState({});
     const [noWeatherDegree, setNoWeatherDegree] = useState({});
 
 
-    console.log(weatherDegree,storageNoWeatherDegree, noWeatherDegree, '<===śtorages');
+    console.log(weatherDegree, storageNoWeatherDegree, noWeatherDegree, '<===śtorages');
 
 
     const changeDegree = () => {
         setDegree(!degree);
         localStorage.setItem('weather-degree', JSON.stringify(storageNoWeatherDegree));
         localStorage.setItem('no-weather-degree', JSON.stringify(storageWeatherDegree));
-      
     };
-        
+
     useEffect(() => {
         getUserLocation();
-    },[]);
+    }, []);
 
     const getUserLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-            setLocation({longitude: position.coords.longitude, latitude: position.coords.latitude});
+            setLocation({ longitude: position.coords.longitude, latitude: position.coords.latitude });
         });
-    }; 
+    };
 
 
+    const storageForecast = JSON.parse(localStorage.getItem('forecast'));
 
- 
 
-    return (   
-        Object.keys(storageWeatherDegree).length > 0 || Object.keys(weatherDegree).length > 0   ? 
+    return (
+        forecast || storageForecast === true  ?
             <Weather
                 weatherDegree={storageWeatherDegree || weatherDegree}
                 setForecast={setForecast}
@@ -49,18 +48,18 @@ function WeatherBoard() {
                 degree={degree}
                 setNoWeatherDegree={setNoWeatherDegree}
                 setWeatherDegree={setWeatherDegree}
-               
-            /> 
-            : 
+
+            />
+            :
             <Search
                 setWeatherDegree={setWeatherDegree}
                 setNoWeatherDegree={setNoWeatherDegree}
-                setForecast ={setForecast}
-                currentLocation = {location}
+                setForecast={setForecast}
+                currentLocation={location}
                 degree={degree}
                 changeDegree={changeDegree}
                 getUserLocation={getUserLocation}
-            />  
+            />
     );
 }
 

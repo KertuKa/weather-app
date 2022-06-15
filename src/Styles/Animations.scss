@@ -1,3 +1,5 @@
+@import "../Variables/Variables.scss";
+
 /* Loading */
 
 .dot-flashing {
@@ -5,8 +7,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #6e818a;
-    color: #6e818a;
+    background-color: $greyColor;
+    color: $greyColor;
     animation: dotFlashing 1s infinite linear alternate;
     animation-delay: .5s;
   }
@@ -23,8 +25,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #6e818a;
-    color: #6e818a;
+    background-color: $greyColor;
+    color: $greyColor;
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 0s;
   }
@@ -34,15 +36,15 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #6e818a;
-    color: #6e818a;
+    background-color: $greyColor;
+    color: $greyColor;
     animation: dotFlashing 1s infinite alternate;
     animation-delay: 1s;
   }
   
   @keyframes dotFlashing {
     0% {
-      background-color: #6e818a;
+      background-color: $greyColor;
     }
     50%,
     100% {

@@ -9,12 +9,13 @@ function Search({setForecast, currentLocation, setWeatherDegree, setNoWeatherDeg
 
     const getCityCoords = (cityName) => {
         axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=3c9121331dd39b253026c6fdc1f91974`)
-            .then((response) => 
-                getWeather({latitude: response.data[0].lat, longitude: response.data[0].lon})           
-        
+            .then((response) => {
+                getWeather({latitude: response.data[0].lat, longitude: response.data[0].lon});           
+                localStorage.setItem('forecast', true);
+            }
             );
         setForecast(true);
-          
+       
     };
       
 
@@ -35,8 +36,10 @@ function Search({setForecast, currentLocation, setWeatherDegree, setNoWeatherDeg
                         setNoWeatherDegree(response[1].data);
                         localStorage.setItem('weather-degree', JSON.stringify(response[0].data));
                         localStorage.setItem('no-weather-degree', JSON.stringify(response[1].data));
+                        localStorage.setItem('forecast', true);
                     }
                     setForecast(true);
+                 
                 },
             );
             
