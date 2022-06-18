@@ -4,13 +4,13 @@ import Toggle from 'react-toggle';
 
 export default function Header({weather, handleReset, changeDegree, degree}) {
 
-    return weather && weather.current && weather.current ? (
+    return weather ? (
         <header className="weather-box-header">
             <div className="city-container">
                 <button type="arrow-back" className="material-icons arrow" onClick={handleReset}>arrow_back</button>          
                 <h1 className="city-name">
                     {weather.timezone ? (
-                        weather.timezone.split('/').pop()
+                        weather.timezone.split('/').pop().replace('_' ,' ')
                     ) : (
                         <div className="snippet" data-title=".dot-flashing">
                             <div className="dot-flashing"></div>
@@ -31,10 +31,7 @@ export default function Header({weather, handleReset, changeDegree, degree}) {
                     />
                 </label>
             </span>
-        </header>          
-      
+        </header>               
     ) :  (
-        <div className="snippet" data-title=".dot-flashing">
-            <div className="dot-flashing"></div>
-        </div>);
+        <div className="header-error-message">Something went wrong. Could not load the city name and back arrow... In order to get back to the search field please restart the app</div>);
 }

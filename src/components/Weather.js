@@ -4,6 +4,7 @@ import {React } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import Loader from './Loader';
 
 export default function Weather({ setNoWeatherDegree, setWeatherDegree, setForecast, changeDegree, degree, weatherDegree, noWeatherDegree}) {
 
@@ -30,10 +31,11 @@ export default function Weather({ setNoWeatherDegree, setWeatherDegree, setForec
             /> 
             <Footer 
                 weather={degree ? weatherDegree : noWeatherDegree}
+                weatherDegree={weatherDegree}
+                noWeatherDegree ={noWeatherDegree}
+                degree={degree}
             />  
         </div>
     ) : (
-        <div className='snippet' data-title='.dot-flashing'>
-            <div className='dot-flashing'></div>
-        </div>);
+        <Loader/>);
 }

@@ -2,14 +2,14 @@
 /* eslint-disable react/prop-types */
 import {React} from 'react';
 import Icons from './Icons';
-
 import moment from 'moment';
+import Loader from './Loader';
 
 export default function Main({weather}) {
 
     const date_create = moment().format('dddd, MMMM Do YYYY');
 
-    return weather && weather.current ? (
+    return weather ? (
         <main className="weather-box-main">
             <div>
                 <div>
@@ -20,7 +20,7 @@ export default function Main({weather}) {
                 </div> 
                 <div className="current-weather-container">
                     <div className="temp-icon">
-                        <span className="temp">{weather.current.temp}</span>
+                        <span className="temp">{Math.round(weather.current.temp)}</span>
                         <span className="current-weather-icon">
                             <Icons   
                                 icon={weather.current.weather[0].id}                       
@@ -37,10 +37,10 @@ export default function Main({weather}) {
                         </div>     
                         {weather.daily.slice(0,1).map((dailyTemp, index) => (
                             <div key={index} className="daily-temp">
-                                <p>{dailyTemp.temp.morn}</p>
-                                <p>{dailyTemp.temp.day}</p>
-                                <p>{dailyTemp.temp.eve}</p>
-                                <p>{dailyTemp.temp.night}</p>
+                                <p>{Math.round(dailyTemp.temp.morn)}</p>
+                                <p>{Math.round(dailyTemp.temp.day)}</p>
+                                <p>{Math.round(dailyTemp.temp.eve)}</p>
+                                <p>{Math.round(dailyTemp.temp.night)}</p>
                             </div>
                         )) }  
                     </div>             
@@ -48,8 +48,8 @@ export default function Main({weather}) {
             </div>
         </main>
     
-    ) : (
-        <div className="snippet" data-title=".dot-flashing">
-            <div className="dot-flashing"></div>
-        </div>);
+    ) : ( 
+        <Loader/>
+    // <div className="main-error-message">Something went wrong. Could not load current weather...</div>
+    );
 }

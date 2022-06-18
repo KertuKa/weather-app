@@ -53,12 +53,12 @@
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    border: 1.3px solid $greyColor;
+    border: 1.3px solid $primaryColor;
   }
   
   .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
     background-color: $whiteColor;
-    border: 1.5px solid $greyColor;
+    border: 1.5px solid $primaryColor;
   }
   
   .react-toggle--checked .react-toggle-track {
@@ -123,7 +123,7 @@
     left: 1.5px;
     width: 32px;
     height: 27px;
-    border: 1.3px solid $greyColor;
+    border: 1.3px solid $primaryColor;
     border-radius: 45%;
     background-color: $whiteColor;
   

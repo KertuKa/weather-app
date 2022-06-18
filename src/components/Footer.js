@@ -1,20 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import {React, useEffect, useState } from 'react';
-import SearchField from './SearchField';
-import Toggle from 'react-toggle';
+import {React} from 'react';
 import Icons from './Icons';
-import moment from 'moment';
-import Weather from './Weather';
-import { weekdays } from 'moment';
 
 
-export default function Footer({weather, degree, celsius, fahrenheit}) {
 
-    const time = new Date();
+export default function Footer({weather, degree, weatherDegree, noWeatherDegree}) {
 
-    return weather && weather.current ? (
+    return weather ? (
         <footer className="weather-box-footer">
             <div className="weather-box-footer-item">                
                 {weather.daily.slice(0, 7).map((dayTemp, index)=> (
@@ -24,14 +18,12 @@ export default function Footer({weather, degree, celsius, fahrenheit}) {
                         <Icons
                             icon = {dayTemp.weather[0].id}
                         />
-                        <h5 className="week-temp">{dayTemp.temp.day}</h5>
+                        <h5 className="week-temp">{Math.round(dayTemp.temp.day)}</h5>
                     </div>            
                 ))} 
             </div>  
         </footer>            
     ) : (
-        <div className="snippet" data-title=".dot-flashing">
-            <div className="dot-flashing"></div>
-        </div>
+        <div className="footer-error-message">Something went wrong. Could not load 7-day forecast...</div>
     ); 
 }

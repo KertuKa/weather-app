@@ -360,8 +360,7 @@ body {
     text-align: center;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr)[4];
-        grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     grid-auto-rows: 55px;
   }

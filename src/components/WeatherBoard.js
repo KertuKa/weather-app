@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import Weather from './Weather';
 
-
 const storageWeatherDegree = JSON.parse(localStorage.getItem('weather-degree'));
 const storageNoWeatherDegree = JSON.parse(localStorage.getItem('no-weather-degree'));
-
 function WeatherBoard() {
 
     const [location, setLocation] = useState({ latitude: null, longitude: null });
@@ -13,10 +11,11 @@ function WeatherBoard() {
     const [degree, setDegree] = useState(false);
     const [weatherDegree, setWeatherDegree] = useState({});
     const [noWeatherDegree, setNoWeatherDegree] = useState({});
+    const [error, setError] = useState(null);
 
 
-    console.log(weatherDegree, storageNoWeatherDegree, noWeatherDegree, '<===śtorages');
-
+    const storageForecast = JSON.parse(localStorage.getItem('forecast'));
+    
 
     const changeDegree = () => {
         setDegree(!degree);
@@ -28,15 +27,20 @@ function WeatherBoard() {
         getUserLocation();
     }, []);
 
+
     const getUserLocation = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setLocation({ longitude: position.coords.longitude, latitude: position.coords.latitude });
-        });
+        try{
+            navigator.geolocation.getCurrentPosition((position) => {
+                setLocation({ longitude: position.coords.longitude, latitude: position.coords.latitude });
+            });
+        } catch (error) {
+            setError(error);
+        }
+        if (error) {
+            return console.log('caught error');
+        }
     };
-
-
-    const storageForecast = JSON.parse(localStorage.getItem('forecast'));
-
+    
 
     return (
         forecast || storageForecast === true  ?
@@ -59,6 +63,8 @@ function WeatherBoard() {
                 degree={degree}
                 changeDegree={changeDegree}
                 getUserLocation={getUserLocation}
+                error = {error}
+                setError = {setError}
             />
     );
 }

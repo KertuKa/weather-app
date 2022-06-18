@@ -1,9 +1,14 @@
-$orangeColor: rgb(254, 134, 105);
-$lightOrange: rgb(227, 149, 130);
-$greyColor: rgb(110, 129, 137);
+$backgroundColor: rgb(254, 134, 105);
+$secondaryColor: rgb(227, 149, 130);
+$primaryColor: rgb(110, 129, 137);
+$errorMessageColor: rgb(255, 0, 0);
+
+/* Other colors*/ 
+$darkOrangeColor: rgb(186, 65, 34);
 $lightGrey: rgb(168, 168, 168);
 $darkGreyColor: rgb(77, 77, 77);
 $whiteColor: rgb(255, 255, 255);
+
 
 $fontLight: 300;
 $fontNormal: 400;
@@ -23,7 +28,7 @@ $fontSizeXXL: 120px;
     font-weight: lighter;
     padding-left: 55px;
     line-height: 1.8;
-    color: $lightOrange;
+    color: $secondaryColor;
     display: block;
 }
 
