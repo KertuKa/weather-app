@@ -1,70 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import Weather from './Weather';
+import { useSearchParams  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const storageWeatherDegree = JSON.parse(localStorage.getItem('weather-degree'));
-const storageNoWeatherDegree = JSON.parse(localStorage.getItem('no-weather-degree'));
+
+
 function WeatherBoard() {
-
-    const [location, setLocation] = useState({ latitude: null, longitude: null });
-    const [forecast, setForecast] = useState(false);
-    const [degree, setDegree] = useState(false);
-    const [weatherDegree, setWeatherDegree] = useState({});
-    const [noWeatherDegree, setNoWeatherDegree] = useState({});
-    const [error, setError] = useState(null);
-
-
-    const storageForecast = JSON.parse(localStorage.getItem('forecast'));
+    const navigate = useNavigate();
+    const [weather, setWeather] = useState(0);
+    const [params, setParams] = useSearchParams();
+    const latitude = params.get('latitude');
+    const longitude = params.get('longitude');
+    let celsius = params.get('celsius') === 'true';
+    let forecastData = {};
     
 
     const changeDegree = () => {
-        setDegree(!degree);
-        localStorage.setItem('weather-degree', JSON.stringify(storageNoWeatherDegree));
-        localStorage.setItem('no-weather-degree', JSON.stringify(storageWeatherDegree));
+        params.set('celsius', !celsius);
+        setParams(params);
+        celsius = !celsius;
+        getWeather();
     };
 
-    useEffect(() => {
-        getUserLocation();
-    }, []);
-
-
-    const getUserLocation = () => {
-        try{
-            navigator.geolocation.getCurrentPosition((position) => {
-                setLocation({ longitude: position.coords.longitude, latitude: position.coords.latitude });
-            });
-        } catch (error) {
-            setError(error);
-        }
-        if (error) {
-            return console.log('caught error');
-        }
-    };
     
+    useEffect(() => {
+        if(!latitude || !longitude) {
+            navigate('/');
+        }
+        getWeather();
+    });
+
+    async function getWeather() {
+        const forecastData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=f1cbca422b22402359727f7c86831ba8&units=${celsius? 'metric' : 'imperial'}`);
+        setWeather(forecastData.data);
+    }
 
     return (
-        forecast || storageForecast === true  ?
+        forecastData ?
             <Weather
-                weatherDegree={storageWeatherDegree || weatherDegree}
-                setForecast={setForecast}
                 changeDegree={changeDegree}
-                noWeatherDegree={storageNoWeatherDegree || noWeatherDegree}
-                degree={degree}
-                setNoWeatherDegree={setNoWeatherDegree}
-                setWeatherDegree={setWeatherDegree}
-
+                weather={weather}
             />
             :
             <Search
-                setWeatherDegree={setWeatherDegree}
-                setNoWeatherDegree={setNoWeatherDegree}
-                setForecast={setForecast}
-                currentLocation={location}
-                degree={degree}
                 changeDegree={changeDegree}
-                getUserLocation={getUserLocation}
-                error = {error}
-                setError = {setError}
             />
     );
 }

@@ -2,64 +2,33 @@
 import React from 'react';
 import axios from 'axios';
 import SearchField from './SearchField';
+import { useNavigate } from 'react-router-dom';
 
 
-function Search({setForecast, currentLocation, setWeatherDegree, setNoWeatherDegree, getUserLocation, error, setError}) {
+function Search({currentLocation}) {
     
+    const navigate = useNavigate();
+    let celsius = false;
 
-    const getCityCoords = (cityName) => {
-        try {
-            axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=3c9121331dd39b253026c6fdc1f91974`)
-                .then((response) => {
-                    getWeather({latitude: response.data[0].lat, longitude: response.data[0].lon});           
-                    localStorage.setItem('forecast', true);
-                }
-                );
-            setForecast(true);
-        } 
-        catch (error) {
-            setError(error);
-        }
-        if (error) {
-            return console.log('caught error');
-        }
+    const getCityCoords = async (e) => {
+        e.preventDefault();
+        const city = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${e.target.elements.city.value}&appid=f1cbca422b22402359727f7c86831ba8`);
+        navigate(`/forecast?latitude=${city.data[0].lat}&longitude=${city.data[0].lon}&celsius=${celsius}`);
     };
-      
 
-    const getWeather = async (coords) => { 
-        try{
-            let endpoints = [
-                `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=3c9121331dd39b253026c6fdc1f91974&units=metric`,
-                `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=3c9121331dd39b253026c6fdc1f91974&units=imperial`
-            ];
-            
-            axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
-                (response) => 
-                {
-                    if(response[0].data){
-                        setWeatherDegree(response[0].data);
-                        setNoWeatherDegree(response[1].data);
-                        localStorage.setItem('weather-degree', JSON.stringify(response[0].data));
-                        localStorage.setItem('no-weather-degree', JSON.stringify(response[1].data));
-                        localStorage.setItem('forecast', true);
-                    }
-                    setForecast(true);
-                 
-                },
-            );
-            
-        }catch(err) {
-            console.log(err);
-        }
-       
+    const getUserLocation = () => {
+        navigator.geolocation.getCurrentPosition(position => {
+            navigate(`/forecast?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&celsius=${celsius}`);
+        });
     };
+ 
+
+
    
     return (
         <SearchField
             getCityCoords={getCityCoords}
-            setForecast={setForecast}
             currentLocation = {currentLocation}
-            getWeather = {getWeather}  
             getUserLocation={getUserLocation} 
         />  
     );

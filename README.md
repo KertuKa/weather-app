@@ -28,13 +28,13 @@ The function navigator.geolocation.getCurrentPosition was used to get user's cur
 
 When a specific city is typed in the search field the application first triggers getCityCoords() function to get the city coordinates and then getWeather() to get the data of that specific city.
 
-In addition, localStorage was used to set and get data which allows users to refresh the page without losing the displayed forecast.
+Please note that the application is not capable of finding forecast for smaller cities and works mainly with capial cities.
 
 ## Styling
 For the application presentation mainly CSS and SASS were used.
 
 ## Mobile view
-The appication is responsive and adjusted for smaller screens (max width 600px).
+The application is responsive and adjusted for smaller screens (max width 600px).
 
 ## Some libraries that were used
 [react-toggle]

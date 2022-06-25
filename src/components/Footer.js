@@ -6,9 +6,9 @@ import Icons from './Icons';
 
 
 
-export default function Footer({weather, degree, weatherDegree, noWeatherDegree}) {
+export default function Footer({weather}) {
 
-    return weather ? (
+    return (
         <footer className="weather-box-footer">
             <div className="weather-box-footer-item">                
                 {weather.daily.slice(0, 7).map((dayTemp, index)=> (
@@ -23,7 +23,5 @@ export default function Footer({weather, degree, weatherDegree, noWeatherDegree}
                 ))} 
             </div>  
         </footer>            
-    ) : (
-        <div className="footer-error-message">Something went wrong. Could not load 7-day forecast...</div>
     ); 
 }
