@@ -4,7 +4,7 @@ import React from 'react';
 export default function Icons({icon}) {
 
     return (     
-        <div classNames="week-icon-items">      
+        <div className="week-icon-items">      
             <i className={icon <= 232 ? 'week-icons wi wi-thunderstorm' 
                 : icon >= 300 && icon <=321 ? 'week-icons wi wi-sprinkle'
                     : icon >= 500 && icon <=531 ? 'week-icons wi wi-rain'

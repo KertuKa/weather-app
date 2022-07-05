@@ -29,6 +29,9 @@ body {
 
 }
 
+li {
+  list-style: none;
+}
 
 /* First page */
 
@@ -334,7 +337,6 @@ body {
 
   /* Footer */
   .weather-box-footer {
-    padding-right: 20px;
     padding-left: 20px;
     padding-top: 30px;
   }
@@ -343,10 +345,9 @@ body {
     font-size: $fontSizeS;
     line-height: 1.2;
     color: $primaryColor;
-    text-align: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 15px;
     grid-auto-rows: 55px;
   }
   

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Search from './Search';
 import Weather from './Weather';
 import { useSearchParams  } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -14,14 +13,13 @@ function WeatherBoard() {
     const latitude = params.get('latitude');
     const longitude = params.get('longitude');
     let celsius = params.get('celsius') === 'true';
-    let forecastData = {};
-    
+    const degree = celsius ? '°C' : '°F';
+    //const [error, setError] = useState(null);
 
     const changeDegree = () => {
         params.set('celsius', !celsius);
         setParams(params);
         celsius = !celsius;
-        getWeather();
     };
 
     
@@ -30,23 +28,23 @@ function WeatherBoard() {
             navigate('/');
         }
         getWeather();
-    });
+        /*         const timer = setTimeout(() => <div>test</div>, 5000);
+        return () => clearTimeout(timer); */
+    }, [params]);
 
-    async function getWeather() {
-        const forecastData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=f1cbca422b22402359727f7c86831ba8&units=${celsius? 'metric' : 'imperial'}`);
-        setWeather(forecastData.data);
-    }
+    async function getWeather() {     
+        const forecastData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=ce6c8ee3a584065c72dd563549be5531&units=${celsius? 'metric' : 'imperial'}`);
+        setWeather(forecastData.data);  }  
+     
+    
 
     return (
-        forecastData ?
-            <Weather
-                changeDegree={changeDegree}
-                weather={weather}
-            />
-            :
-            <Search
-                changeDegree={changeDegree}
-            />
+        <Weather
+            changeDegree={changeDegree}
+            weather={weather}
+            degree = {degree}
+            celsius = {celsius}
+        />
     );
 }
 

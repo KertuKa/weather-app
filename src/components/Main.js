@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import {React} from 'react';
-//import Icons from './Icons';
+import Icons from './Icons';
 import moment from 'moment';
 
-export default function Main({currentTemp}) {
-
+export default function Main({weather, degree}) {
     const date_create = moment().format('dddd, MMMM Do YYYY');
 
     return (
@@ -15,33 +14,32 @@ export default function Main({currentTemp}) {
                     <h1 className="current-date">{date_create}</h1>
                 </div>
                 <div>
-                    {/* <h2 className="description">{weather.current.weather[0].description}</h2>  */}
+                    <h2 className="description">{weather.current.weather[0].description}</h2> 
                 </div> 
                 <div className="current-weather-container">
                     <div className="temp-icon">
-                        <span className="temp">{Math.round(currentTemp)}</span>
-                        {/*             <span className="current-weather-icon">
+                        <span className="temp">{Math.round(weather.current.temp)}{degree}</span>
+                        <span className="current-weather-icon">
                             <Icons   
                                 icon={weather.current.weather[0].id}                       
                             /> 
-                        </span>  */}
+                        </span> 
                     </div>  
-
                     <div className="day-temp">
-                        <div className="day-times">
-                            <p>Morning</p>
-                            <p>Day</p>
-                            <p>Evening</p>
-                            <p>Night</p>    
-                        </div>     
-                        {/*          {weather.daily.slice(0,1).map((dailyTemp, index) => (
-                            <div key={index} className="daily-temp">
-                                <p>{Math.round(dailyTemp.temp.morn)}</p>
-                                <p>{Math.round(dailyTemp.temp.day)}</p>
-                                <p>{Math.round(dailyTemp.temp.eve)}</p>
-                                <p>{Math.round(dailyTemp.temp.night)}</p>
-                            </div>
-                        )) }  */} 
+                        <ul className="day-times">
+                            <li>Morning</li>
+                            <li>Day</li>
+                            <li>Evening</li>
+                            <li>Night</li>    
+                        </ul>     
+                        {weather.daily.slice(0,1).map((dailyTemp, index) => (
+                            <ul key={index} className="daily-temp">
+                                <li>{Math.round(dailyTemp.temp.morn)} {degree}</li>
+                                <li>{Math.round(dailyTemp.temp.day)} {degree}</li>
+                                <li>{Math.round(dailyTemp.temp.eve)} {degree}</li>
+                                <li>{Math.round(dailyTemp.temp.night)} {degree}</li>
+                            </ul>
+                        )) }  
                     </div>             
                 </div> 
             </div>

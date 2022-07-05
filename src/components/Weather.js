@@ -1,25 +1,29 @@
 /* eslint-disable react/prop-types */
 import {React } from 'react';
 import Header from './Header';
-// import Main from './Main';
-// import Footer from './Footer';
+import Main from './Main';
+import Footer from './Footer';
+import Loader from './Loader';
 
-export default function Weather({changeDegree, weather}) {
+export default function Weather({changeDegree, weather, degree, celsius}) {
 
-
-    return (
+    return weather ? (
         <div className='weather-box'> 
             <Header
                 changeDegree={changeDegree}
                 weather={weather}
+                celsius={celsius}
             /> 
-            {/*            <Main
-                currentTemp={currentTemp}
+            <Main
                 changeDegree={changeDegree}
+                weather = {weather}
+                degree = {degree}
             /> 
             <Footer 
-                currentTemp={currentTemp}
-            />  */}
+                weather={weather}
+                degree = {degree}
+            />  
         </div>
-    );
+    ) : 
+        <Loader/>;
 }

@@ -1,44 +1,27 @@
 @import "../Variables/Variables.scss";
 
-.header-error-message {
+.field-error {
+    text-align: center;
+    padding-top: 10px;
     color: $errorMessageColor;
-    padding-left: 48px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.main-error-message {
-    color: $errorMessageColor;
-    padding-left: 48px;
-    margin-top: 100px;
-    margin-bottom: 170px;
-}
-
-.footer-error-message {
-    color: $errorMessageColor;
-    padding-left: 48px;
-    margin-top: 50px;
 }
 
 
-@media screen and (max-width: 600px) {
-.header-error-message {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-bottom: 10px;
+.loading {
+    font-size: $fontSizeL;
+    color: $primaryColor;
+    animation: blinker 2s linear infinite;
+    padding-top: 25%;
+    text-align: center;
+}
+
+.location-message-container {
+  text-align: center;
+  padding-top: 25%;
+}
+
+@keyframes blinker {
+    20% {
+      opacity: 0;
     }
-
-.main-error-message {
-    color: $errorMessageColor;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-bottom: 150px;
-    }
-    
-.footer-error-message {
-    color: $errorMessageColor;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 100px;
-    }    
-}
+  }

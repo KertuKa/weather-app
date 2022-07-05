@@ -3,7 +3,7 @@ import {React} from 'react';
 import Toggle from 'react-toggle';
 import { useNavigate } from 'react-router-dom';
 
-export default function Header({weather, changeDegree}) {
+export default function Header({weather, changeDegree, celsius}) {
     const navigate = useNavigate();
 
     const navigateBack = () => {
@@ -15,13 +15,7 @@ export default function Header({weather, changeDegree}) {
             <div className="city-container">
                 <button type="arrow-back" className="material-icons arrow" onClick={navigateBack}>arrow_back</button>          
                 <h1 className="city-name">
-                    {weather.timezone ? (
-                        weather.timezone.split('/').pop().replace('_' ,' ')
-                    ) : (
-                        <div className="snippet" data-title=".dot-flashing">
-                            <div className="dot-flashing"></div>
-                        </div>)
-                    }
+                    {weather.timezone.split('/').pop().replace('_' ,' ')}
                 </h1>  
             </div>
             <span className="toggle-container">
@@ -32,6 +26,8 @@ export default function Header({weather, changeDegree}) {
                             unchecked: '°F',
                         }} 
                         onChange={changeDegree}
+                        checked={celsius}
+                        unchecked={!celsius}
                     />
                 </label>
             </span>
