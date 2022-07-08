@@ -4,7 +4,6 @@ import { useSearchParams  } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 function WeatherBoard() {
     const navigate = useNavigate();
     const [weather, setWeather] = useState(0);
