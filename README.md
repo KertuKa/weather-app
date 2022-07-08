@@ -16,7 +16,7 @@ Run the application locally:
 npm start
 ```
 
-The application should now run on [http://localhost:3000]
+The application should now run on http://localhost:3000
 
 ## About the application 
 
@@ -49,10 +49,10 @@ The application is responsive and adjusted for smaller screens (max width 600px)
 
 ## Libraries that were used
 #### prop-types
-(https://www.npmjs.com/package/prop-types)
+https://www.npmjs.com/package/prop-types
 
 #### react-toggle
-(https://github.com/aaronshaf/react-toggle) 
+https://github.com/aaronshaf/react-toggle
 Made some refactoring
 
 ## Additional information
