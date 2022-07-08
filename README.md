@@ -48,10 +48,10 @@ For the application presentation mainly CSS and SASS were used.
 The application is responsive and adjusted for smaller screens (max width 600px).
 
 ## Libraries that were used
-[prop-types]
+#### prop-types
 (https://www.npmjs.com/package/prop-types)
 
-[react-toggle]
+#### react-toggle
 (https://github.com/aaronshaf/react-toggle) 
 Made some refactoring
 
