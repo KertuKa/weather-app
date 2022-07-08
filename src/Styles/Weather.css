@@ -282,12 +282,6 @@ body {
     font-size: 21px;
     border-bottom: 2px dotted;
   }
-  /* .current-position {
-    border: none;
-    background-color: $whiteColor;
-    font-size: $fontSizeS;
-    border-bottom: 2px dotted;
-  } */
   .text-field {
     width: 160px;
     height: 50px;

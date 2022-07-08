@@ -1,0 +1,122 @@
+@import "../Variables/Variables.scss";
+
+.weather-box {  
+    width: 100%;
+    height: 590px;
+    max-width: 1000px;
+    background-color: $containerColor;
+    overflow: hidden;
+    box-shadow: 1px 1px 5px 1px;
+  }
+  
+  .searchfield-container {
+    width: 500px;
+    margin: auto;
+    margin-top: 220px;
+  }
+  
+  .form__input {
+    display: flex;
+  }
+  
+  .material-icons {
+    border: none;
+    background-color: $containerColor;
+    border-bottom: none;
+  }
+  
+  .form__submit {
+    color: $primaryColor;
+    border-bottom: 2px solid $primaryColor;
+    height: 50px;
+    }
+  
+  
+  ::placeholder {
+    color: $searchCityColor;
+    font-weight: map-get($font-weights, medium);
+    padding-left: 30px; 
+  }
+  
+  .text-field {
+    width: 470px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid $primaryColor;
+    font-size: $fontSizeL;
+    text-align: center;
+  }
+  
+  .current-position {
+    border: none;
+    background-color: $containerColor;
+    font-size: $fontSizeS;
+    border-bottom: 2px dotted;
+  }
+  
+  .use-location{
+    text-align: center;
+    line-height: 65px;
+  
+  #{&}__text {
+      font-size: $fontSizeS;
+      line-height: 0px;
+    }
+  }
+  
+
+
+  @media screen and (max-width: $mobile) {
+
+  .weather-box {
+    width: 80%;
+  }
+
+  .searchfield-container {
+    width: 60%;
+    text-align: center;
+  }
+
+  .current-position {
+    border: none;
+    background-color: $containerColor;
+    font-size: $fontSizeS;
+    border-bottom: 2px dotted;
+    line-height: 70px;
+  }
+
+  .use-location{
+    text-align: center;
+    line-height: 65px;
+    font-size: $fontSizeXS;
+
+    
+    #{&}-or {
+    font-style: italic;
+  }
+
+  #{&}__text {
+      margin: 0px;
+      font-size: $fontSizeS;
+    }
+  }
+
+  .current-position {
+    height: 50px;
+    padding: 0px;
+    margin-top: 9px;
+    border-bottom: none;
+    font-size: $fontSizeS;
+    border-bottom: 2px dotted;
+  }
+
+  .text-field {
+    width: 160px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid $primaryColor;
+    font-size: $fontSizeL;
+    text-align: center;
+  }
+  
+}

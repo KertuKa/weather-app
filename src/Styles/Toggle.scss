@@ -14,15 +14,8 @@
     background-color: transparent;
     border: 0;
     padding: 0;
-  
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  
-    -webkit-tap-highlight-color: $whiteColor;
+    @include userSelect(); 
+    -webkit-tap-highlight-color: $containerColor;
     -webkit-tap-highlight-color: transparent;
   }
   
@@ -49,27 +42,21 @@
     height: 30px;
     padding: 0px;
     border-radius: 30px;
-    background-color: $whiteColor;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+    background-color: $containerColor;
+    @include transitionAllShort();
     border: 1.3px solid $primaryColor;
   }
   
   .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-    background-color: $whiteColor;
     border: 1.5px solid $primaryColor;
   }
   
-  .react-toggle--checked .react-toggle-track {
-    background-color: $whiteColor;
-  }
-  
+  .react-toggle--checked .react-toggle-track,
   .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-    background-color: $whiteColor;
+    background-color: $containerColor;
   }
   
-  .react-toggle-track-check {
+  .react-toggle-track-check, .react-toggle-track-x {
     position: absolute;
     width: 3px;
     height: 3px;
@@ -78,39 +65,27 @@
     top: 3px;
     bottom: 0px;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: auto;    
     line-height: 0;
+    @include transitionOpacity(); 
+  }
+
+  .react-toggle-track-check {
     left: 15px;
     opacity: 0;
-    -webkit-transition: opacity 0.25s ease;
-    -moz-transition: opacity 0.25s ease;
-    transition: opacity 0.25s ease;
+ }
+
+   
+  .react-toggle-track-x {
+    right: 25px;
+    opacity: 1;
   }
   
   .react-toggle--checked .react-toggle-track-check {
     opacity: 1;
-    -webkit-transition: opacity 0.25s ease;
-    -moz-transition: opacity 0.25s ease;
-    transition: opacity 0.25s ease;
+    @include transitionOpacity();
   }
-  
-  .react-toggle-track-x {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    font-size: $fontSizeXXS;
-    font-weight: $fontMedium;
-    top: 3px;
-    bottom: 0px;
-    margin-top: auto;
-    margin-bottom: auto;
-    line-height: 0;
-    right: 25px;
-    opacity: 1;
-    -webkit-transition: opacity 0.25s ease;
-    -moz-transition: opacity 0.25s ease;
-    transition: opacity 0.25s ease;
-  }
+ 
   
   .react-toggle--checked .react-toggle-track-x {
     opacity: 0;
@@ -125,15 +100,9 @@
     height: 27px;
     border: 1.3px solid $primaryColor;
     border-radius: 45%;
-    background-color: $whiteColor;
-  
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  
-    -webkit-transition: all 0.25s ease;
-    -moz-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    background-color: $containerColor; 
+    @include boardBox();
+    @include transitionAllLong();
   }
   
   .react-toggle--checked .react-toggle-thumb {
@@ -141,7 +110,7 @@
   
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $mobile) {
     .toggle-container {
       padding-top: 20px;
       padding-right: 20px;

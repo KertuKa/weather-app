@@ -4,12 +4,11 @@
 @import "../Variables/Variables.scss";
 
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-weight: $fontNormal;
+  font-weight: map-get($font-weights, normal);
 }
 
 
@@ -33,74 +32,6 @@ li {
   list-style: none;
 }
 
-/* First page */
-
-.weather-box {  
-  width: 100%;
-  height: 590px;
-  max-width: 1000px;
-  background-color: $whiteColor;
-  overflow: hidden;
-  box-shadow: 1px 1px 5px 1px;
-}
-
-.searchfield-container {
-  width: 500px;
-  margin: auto;
-  margin-top: 220px;
-}
-
-.search-field {
-  display: flex;
-}
-
-.material-icons {
-  border: none;
-  background-color: $whiteColor;
-  border-bottom: 2px solid $primaryColor;
-}
-
-.search-button {
-  color: $primaryColor;
-  border-bottom: 2px solid $primaryColor;
-  height: 50px;
-  }
-
-
-::placeholder {
-  color: $lightGrey;
-  font-weight: $fontMedium;
-  padding-left: 30px; 
-}
-
-.text-field {
-  width: 470px;
-  height: 50px;
-  border: none;
-  border-bottom: 2px solid $primaryColor;
-  font-size: $fontSizeL;
-  text-align: center;
-}
-
-.current-position {
-  border: none;
-  background-color: $whiteColor;
-  font-size: $fontSizeS;
-  border-bottom: 2px dotted;
-}
-
-.use-location{
-  text-align: center;
-  line-height: 65px;
-}
-
-.use-location-text {
-  font-size: $fontSizeS;
-  line-height: 0px;
-}
-
-
-
 /* Header */
 
 .weather-box-header{
@@ -112,7 +43,7 @@ li {
 
 
 .city-name {
-  font-weight: $fontMedium;
+  font-weight: map-get($font-weights, medium);
   font-size: $fontSizeL;
   padding-left: 45px;
   color: $primaryColor;
@@ -131,6 +62,7 @@ li {
   margin: auto;
 }
 
+
 /* Main */
 .weather-box-main {
   height: 50%;
@@ -138,157 +70,100 @@ li {
 }
 
 .current-date {
-  font-weight: $fontLight;
+  font-weight: map-get($font-weights, light);
   font-size: $fontSizeL;
   padding-bottom: 15px;
   color: $primaryColor;
 }
 
-.description {
-  font-weight: $fontLight;
+.weather-description {
+  font-weight: map-get($font-weights, light);
   font-size: $fontSizeM;
   color: $primaryColor;
-}
 
-.description:first-letter{
+  
+  &:first-letter {
   text-transform:capitalize;
+  }
 }
 
-.current-weather-container {
-  display:flex;
-}
-
-.temp-icon {
+.current-weather-container, .current-weather {
   display: flex;
-}
 
-.temp {
+#{&}-icon {
+    font-size: $fontSizeXXXL;
+    color: $secondaryColor;
+  }
+
+  
+#{&}-temp {
   font-size: $fontSizeXXL;
   color: $secondaryColor;
-  font-weight: $fontNormal;
+  font-weight: map-get($font-weights, normal);
   padding-right: 50px;
-}
-.current-weather-icon {
-  font-size: 8em;
-  color: $secondaryColor;
+  }
 }
 
 .day-temp {
   display: flex;
 }
 
-.day-times{
-  @include day-temp();
-}
-
-.daily-temp {
-  @include day-temp();
+.day-times, .daily-temp {
+  @include day-temp-block();
 }
 
 /* Footer */
 .weather-box-footer {
   padding-right: 48px;
   padding-left: 48px;
-}
 
-.weather-box-footer-item {
+
+  #{&}-item {
   font-size: $fontSizeL;
   line-height: 1.5;
   color: $primaryColor;
   text-align: center;
   display: flex;
   justify-content: space-between;
+  }
 }
 
-.week-temp {
+.week-temp, .week-day-name {
   font-size: $fontSizeXS;
 }
 
-.week-day-name {
-  font-size: $fontSizeXS;
-}
-
-@media screen and (max-width: 600px) {
-
-  /* First Page */
-  .weather-box {
-    width: 80%;
-  }
-
-  .searchfield-container {
-    width: 60%;
-    text-align: center;
-  }
-
-  .current-position {
-    border: none;
-    background-color: $whiteColor;
-    font-size: $fontSizeS;
-    border-bottom: 2px dotted;
-    line-height: 70px;
-  }
-
-  .or-location {
-    font-style: italic;
-  }
-
-  .use-location-text {
-    margin: 0px;
-    font-size: 17px;
-  }
-
-  .use-location{
-    text-align: center;
-    line-height: 65px;
-    font-size: 15px;
-  }
-
-  .current-position {
-    height: 50px;
-    padding: 0px;
-    margin-top: 9px;
-    border-bottom: none;
-    font-size: $fontSizeS;
-    border-bottom: 2px dotted;
-  }
-
-  .text-field {
-    width: 160px;
-    height: 50px;
-    border: none;
-    border-bottom: 2px solid $primaryColor;
-    font-size: $fontSizeL;
-    text-align: center;
-  }
+@media screen and (max-width: $mobile) {
 
   /* Header */
   .weather-box-header{
-   height: 20%;
-    padding-left: 20px;
-    display: block;
-    margin-top: 1px;
-  }
-
-  
-  .city-name {
-    font-size: $fontSizeM;
-    max-width:220px;
-    word-wrap:break-word;
-    line-height: 0.8;
-    padding-top: 0px;
-    margin-left: 5px;
-    padding-left: 0px;
-  }
-
-  .city-container{
-    padding-top: 20px;
-    padding-bottom: 8px;
-  }
-
+    height: 20%;
+     padding-left: 20px;
+     display: block;
+     margin-top: 1px;
+   }
+ 
+   
+   .city-name {
+     font-size: $fontSizeM;
+     max-width:220px;
+     word-wrap:break-word;
+     line-height: 0.8;
+     padding-top: 0px;
+     margin-left: 5px;
+     padding-left: 0px;
+   }
+ 
+   .city-container{
+     padding-top: 20px;
+     padding-bottom: 8px;
+   }
+   
   .arrow {
     margin-left: 0px;
     margin-right: 0px;
+    border: none;
   }
+  
   /* Main*/
 
   .weather-box-main {
@@ -297,12 +172,12 @@ li {
   }
 
   .current-date {
-    font-weight: $fontNormal;
+    font-weight: map-get($font-weights, normal);
     font-size: $fontSizeS;
     padding-bottom: 5px;
   }
 
-  .description {
+  .weather-description {
     font-size: $fontSizeS;
   }
 
@@ -311,37 +186,36 @@ li {
     align-items: center;
   }
 
-  .temp-icon {
+  .current-weather {
     padding-top: 10px;
     padding-bottom: 10px;
-  }
 
-  .temp {
-    font-size: $fontSizeXL;
-    font-weight: $fontNormal;
-    padding-right: 20px;
+    #{&}-temp {
+      font-size: $fontSizeXL;
+      font-weight: map-get($font-weights, normal);
+      padding-right: 20px;
+    }
+    
+    #{&}-icon {
+      font-size: 60px;
+    }
   }
-  .current-weather-icon {
-    font-size: 60px;
+  
+  .daily-temp, .day-times {
+    font-size: $fontSizeS;
   }
 
   .day-times {
-    font-size: 18px;
     padding-left: 0;
     padding-right: 95px;
-  }
-
-  .daily-temp {
-    font-size: 18px;
   }
 
   /* Footer */
   .weather-box-footer {
     padding-left: 20px;
     padding-top: 30px;
-  }
   
-  .weather-box-footer-item {
+  #{&}-item {
     font-size: $fontSizeS;
     line-height: 1.2;
     color: $primaryColor;
@@ -350,14 +224,9 @@ li {
     gap: 15px;
     grid-auto-rows: 55px;
   }
-  
-  .week-temp {
-    font-size: $fontSizeXXS;
-  }
-  
-  .week-day-name {
-    font-size: $fontSizeXXS;
-  }
+}
 
-
+.week-temp, .week-day-name {
+  font-size: $fontSizeXXS;
+}
 }

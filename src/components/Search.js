@@ -1,13 +1,9 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import axios from 'axios';
 import SearchField from './SearchField';
 import { useNavigate } from 'react-router-dom';
 
-
-
-function Search({currentLocation}) {
-    //const [error, setError]= useState(0);
+function Search() {
     const navigate = useNavigate();
     let celsius = false;
     const [fieldError, setFieldError] = useState(false);
@@ -24,7 +20,6 @@ function Search({currentLocation}) {
         }
     };
  
-
     
     const getUserLocation = () => {
         if (!navigator.geolocation) {
@@ -46,7 +41,6 @@ function Search({currentLocation}) {
     return (
         <SearchField
             getCityCoords={getCityCoords}
-            currentLocation = {currentLocation}
             getUserLocation={getUserLocation} 
             fieldError = {fieldError}
             locatingInfo={locatingInfo}

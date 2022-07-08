@@ -1,5 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
+
+Icons.propTypes = {
+    icon: PropTypes.number,
+};
 
 export default function Icons({icon}) {
 

@@ -3,16 +3,15 @@
 .field-error {
     text-align: center;
     padding-top: 10px;
-    color: $errorMessageColor;
+    color: $fieldErrorColor;
 }
 
+.error-page, .loading{
+  @include error-page();
+}
 
 .loading {
-    font-size: $fontSizeL;
-    color: $primaryColor;
-    animation: blinker 2s linear infinite;
-    padding-top: 25%;
-    text-align: center;
+  animation: blinker 2s linear infinite;
 }
 
 .location-message-container {
@@ -23,5 +22,13 @@
 @keyframes blinker {
     20% {
       opacity: 0;
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    .error-page {
+      font-size: $fontSizeS;
+      padding: 30px;
+      padding-top: 10px;
     }
   }

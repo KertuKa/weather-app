@@ -1,9 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 import {React} from 'react';
 import Icons from './Icons';
+import PropTypes from 'prop-types';
 
+Footer.propTypes = {
+    weather: PropTypes.object,
+    degree: PropTypes.string,
+};
 
 
 export default function Footer({weather, degree}) {

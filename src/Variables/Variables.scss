@@ -1,36 +1,95 @@
-$backgroundColor: rgb(254, 134, 105);
 $secondaryColor: rgb(227, 149, 130);
 $primaryColor: rgb(110, 129, 137);
-$errorMessageColor: rgb(255, 0, 0);
 
 /* Other colors*/ 
-$darkOrangeColor: rgb(186, 65, 34);
-$lightGrey: rgb(168, 168, 168);
-$darkGreyColor: rgb(77, 77, 77);
-$whiteColor: rgb(255, 255, 255);
+$loadingDotColor: rgb(186, 65, 34);
+$fieldErrorColor: rgb(255, 0, 0);
+$searchCityColor: rgb(168, 168, 168);
+$containerColor: rgb(255, 255, 255);
+$backgroundColor: rgb(254, 134, 105);
 
+/* Font weights */
+$font-weights:(
+    "light": 300,
+    "normal": 400,
+    "medium": 500
+);
 
 $fontLight: 300;
 $fontNormal: 400;
 $fontMedium: 500;
 
+/* Font sizes */
 $fontSizeXXXS: 10px;
 $fontSizeXXS: 13px;
 $fontSizeXS: 14px;
-$fontSizeS: 21px;
+$fontSizeS: 18px;
 $fontSizeM: 34px;
 $fontSizeL: 44px;
 $fontSizeXL: 83px;
 $fontSizeXXL: 120px;
+$fontSizeXXXL: 128px;
 
-@mixin day-temp {
-    font-size: 20px;
+$mobile: 600px;
+
+@mixin day-temp-block {
+    font-size: $fontSizeS;
     font-weight: lighter;
     padding-left: 55px;
     line-height: 1.8;
     color: $secondaryColor;
     display: block;
 }
+
+@mixin error-page {
+    font-size: $fontSizeM;
+    color: $primaryColor;
+    padding-top: 25%;
+    text-align: center;
+}
+
+@mixin transitionOpacity {
+    -webkit-transition: opacity 0.25s ease;
+    -moz-transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease;
+}
+
+@mixin transitionAllLong {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+@mixin transitionAllShort {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+@mixin userSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin FlashingDot {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: $loadingDotColor;
+    color: $primaryColor;
+}
+
+@mixin boardBox {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
 
 
    

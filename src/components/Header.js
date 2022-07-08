@@ -1,11 +1,18 @@
-/* eslint-disable react/prop-types */
 import {React} from 'react';
 import Toggle from 'react-toggle';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+Header.propTypes = {
+    weather: PropTypes.object,
+    changeDegree: PropTypes.func,
+    celsius: PropTypes.bool,
+};
+
 
 export default function Header({weather, changeDegree, celsius}) {
+    
     const navigate = useNavigate();
-
     const navigateBack = () => {
         navigate('/');
     };
